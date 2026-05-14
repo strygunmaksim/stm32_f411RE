@@ -1,7 +1,7 @@
 MEMORY
 {
     FLASH (RX) : ORIGIN = 0x08000000, LENGTH = 0x80000
-    SRAM  (RW) : ORIGIN = 0x02000000, LENGTH = 0x20000
+    SRAM  (RW) : ORIGIN = 0x20000000, LENGTH = 0x20000
 }
 
 SECTIONS
@@ -16,7 +16,7 @@ SECTIONS
     .data :
     {
         _start_data = .;
-        *(data*)
+        *(.data*)
         _end_data = .;
     } > SRAM AT > FLASH
 
@@ -25,7 +25,8 @@ SECTIONS
     .bss :
     {
         _start_bss = .;
-        *(bss*)
+        *(.bss*)
+        *(COMMON)
         _end_bss = .;
     } > SRAM
 

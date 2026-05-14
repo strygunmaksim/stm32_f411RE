@@ -6,9 +6,8 @@
 #define GPIOA_MODER   (*(volatile uint32_t *)(GPIOA_BASE + 0x00))
 #define GPIOA_ODR     (*(volatile uint32_t *)(GPIOA_BASE + 0x14))
 
-
-void delay_ms( uint32_t ms ) {
-    while ( ms != 0 ) {
+void delay( uint32_t ms ) {
+    while ( ms ) {
         ms--;
     }
 }
@@ -20,7 +19,9 @@ int main( void ) {
     GPIOA_MODER |=  (0x1 << 10);
 
     while (1) {
-        GPIOA_ODR |= (1 << 5);
+        GPIOA_ODR ^= (1 << 5);
+        delay(1000000);
     }
+
     return 0;
 }
