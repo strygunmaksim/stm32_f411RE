@@ -13,9 +13,9 @@ CFLAGS  = -mcpu=cortex-m4 -mthumb -Wall -Wextra -O0 -g3 -nostdlib
 LDFLAGS  = -T $(SRC_DIR)/$(LDSCRIPT)
 LDFLAGS += -nostdlib
 
-SRC = $(SRC_DIR)/startup.c $(SRC_DIR)/main.c
+SRC = $(SRC_DIR)/startup.c $(SRC_DIR)/main.c $(SRC_DIR)/gpio.c
 
-OBJ = $(BUILD_DIR)/startup.o $(BUILD_DIR)/main.o
+OBJ = $(BUILD_DIR)/startup.o $(BUILD_DIR)/main.o $(BUILD_DIR)/gpio.o
 
 TARGET_ELF = $(BUILD_DIR)/$(TARGET).elf
 TARGET_BIN = $(BUILD_DIR)/$(TARGET).bin
@@ -37,6 +37,9 @@ $(BUILD_DIR)/startup.o: $(SRC_DIR)/startup.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/main.o: $(SRC_DIR)/main.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/gpio.o: $(SRC_DIR)/gpio.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(TARGET_ELF): $(OBJ)

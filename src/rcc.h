@@ -1,15 +1,9 @@
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef RCC_H
+#define RCC_H
 
 #define RCC_BASE   0x40023800UL
-#define GPIOH_BASE 0x40021C00UL
-#define GPIOE_BASE 0x40021000UL
-#define GPIOD_BASE 0x40020C00UL
-#define GPIOC_BASE 0x40020800UL
-#define GPIOB_BASE 0x40020400UL
-#define GPIOA_BASE 0x40020000UL
 
-// RCC Register map
+// refactor to struct
 #define RCC_CR          ( *(volatile unsigned int *)(RCC_BASE + 0x00) )
 #define RCC_PLLCFGR     ( *(volatile unsigned int *)(RCC_BASE + 0x04) )
 #define RCC_CFGR        ( *(volatile unsigned int *)(RCC_BASE + 0x08) )
@@ -32,7 +26,11 @@
 #define RCC_PLLI2SCFGR  ( *(volatile unsigned int *)(RCC_BASE + 0x84) )
 #define RCC_DCKCFGR     ( *(volatile unsigned int *)(RCC_BASE + 0x88) )
 
-// GPIO Registes Map
-
+#define RCC_AHB1ENR_GPIOA (0x1U << 0)
+#define RCC_AHB1ENR_GPIOB (0x1U << 1)
+#define RCC_AHB1ENR_GPIOC (0x1U << 2)
+#define RCC_AHB1ENR_GPIOD (0x1U << 3)
+#define RCC_AHB1ENR_GPIOE (0x1U << 4)
+#define RCC_AHB1ENR_GPIOH (0x1U << 7)
 
 #endif
